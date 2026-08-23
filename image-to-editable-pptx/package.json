@@ -1,0 +1,27 @@
+{
+  "name": "image-to-editable-pptx-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent Skill tooling for reconstructing slide images as editable PowerPoint decks",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test",
+    "validate:html": "node scripts/validate-html.mjs",
+    "export": "node scripts/export-pptx.mjs",
+    "verify": "node scripts/verify-pptx.mjs",
+    "preview": "node scripts/render-preview.mjs"
+  },
+  "dependencies": {
+    "dom-to-pptx": "2.1.1",
+    "jszip": "3.10.1",
+    "sharp": "0.35.3"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

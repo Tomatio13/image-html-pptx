@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editable slide reconstruction</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Noto Sans CJK JP", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #d9d9d9;
+      }
+
+      .slide-stage {
+        display: grid;
+        gap: 32px;
+        justify-content: center;
+        padding: 32px;
+      }
+
+      .slide {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .slide p,
+      .slide h1,
+      .slide h2,
+      .slide h3 {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide-stage">
+      <section class="slide" id="slide-1" aria-label="Slide 1">
+        <h1
+          style="position: absolute; left: 120px; top: 120px; font-size: 72px"
+        >
+          Replace with faithfully transcribed content
+        </h1>
+      </section>
+    </main>
+  </body>
+</html>

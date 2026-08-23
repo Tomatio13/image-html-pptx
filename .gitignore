@@ -1,0 +1,33 @@
+# Dependencies
+image-to-editable-pptx/node_modules/
+
+# Generated slide artifacts
+image-to-editable-pptx/test/output/
+image-to-editable-pptx/work/
+image-to-editable-pptx/dist/
+
+# Test and coverage output
+image-to-editable-pptx/coverage/
+image-to-editable-pptx/.nyc_output/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Tool caches
+.cache/
+.eslintcache
+.DS_Store
+Thumbs.db
+
+# LibreOffice lock files
+.~lock.*#

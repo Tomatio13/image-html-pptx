@@ -1,0 +1,7 @@
+interface:
+  display_name: "Image to Editable PPTX"
+  short_description: "画像スライドを編集可能なPowerPointへ再構築"
+  default_prompt: "Use $image-to-editable-pptx to reconstruct these slide images as an editable PowerPoint deck."
+
+policy:
+  allow_implicit_invocation: true
