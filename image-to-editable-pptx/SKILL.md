@@ -76,6 +76,14 @@ Set `SKILL_DIR` to the absolute path of the directory containing this `SKILL.md`
 - Preserve source content and hierarchy. Do not introduce new claims, labels, decoration, animations, or speaker notes unless requested.
 - Treat validation errors as blocking. Warnings require visual review and a short disclosure if they cannot be corrected.
 
+## Do not
+
+- Do not place a complete source slide, flattened screenshot, or full-slide image in an otherwise empty deck.
+- Do not invent unreadable text, hidden data, missing assets, or source-font details.
+- Do not use remote URLs, data URLs, absolute asset paths, or raster formats outside PNG, JPEG, and WebP.
+- Do not export after an HTML validation error, and do not substitute screenshots for a failed export.
+- Do not claim visual fidelity when comparison previews were not produced and inspected.
+
 ## Environment and failure handling
 
 - Run `npm install` in this skill directory once before first use.
