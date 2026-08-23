@@ -1,0 +1,5 @@
+timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-08-23T09:00+09:00	baseline	image-to-editable-pptx	-	86.2	baseline	-	3 prompts: skill met all expectations; baseline missed validation, aspect-ratio, or safety boundaries	full_test
+2026-08-23T09:15+09:00	pending	image-to-editable-pptx	86.2	3-0 better	keep	failure-mode encoding	paired: 3-0 clear; explicit trigger, first response, and fallback	paired
+2026-08-23T09:25+09:00	pending	image-to-editable-pptx	-	3-0 better	keep	checkpoint design	paired: 3-0 clear; fidelity exceptions require explicit approval	paired
+2026-08-23T09:35+09:00	pending	image-to-editable-pptx	-	3-0 better	keep	counterexamples and blacklist	paired: 3-0 clear; standalone prohibited-actions section	paired

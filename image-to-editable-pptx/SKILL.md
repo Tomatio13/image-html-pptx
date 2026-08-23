@@ -32,6 +32,9 @@ Set `SKILL_DIR` to the absolute path of the directory containing this `SKILL.md`
    ```
 
 5. Use the first image's aspect ratio for the deck. Keep later images fully visible when their ratio differs; represent the necessary letterbox area in the reconstructed slide.
+
+   🔴 **CHECKPOINT — fidelity exception:** Before the first export, stop and ask for user approval if any visible text remains unreadable, a font substitution materially changes the layout, or a region must remain raster because it cannot be reconstructed faithfully. Resume only after the user approves the stated tradeoff.
+
 6. Validate before export:
 
    ```bash
@@ -73,11 +76,25 @@ Set `SKILL_DIR` to the absolute path of the directory containing this `SKILL.md`
 - Preserve source content and hierarchy. Do not introduce new claims, labels, decoration, animations, or speaker notes unless requested.
 - Treat validation errors as blocking. Warnings require visual review and a short disclosure if they cannot be corrected.
 
+## Do not
+
+- Do not place a complete source slide, flattened screenshot, or full-slide image in an otherwise empty deck.
+- Do not invent unreadable text, hidden data, missing assets, or source-font details.
+- Do not use remote URLs, data URLs, absolute asset paths, or raster formats outside PNG, JPEG, and WebP.
+- Do not export after an HTML validation error, and do not substitute screenshots for a failed export.
+- Do not claim visual fidelity when comparison previews were not produced and inspected.
+
 ## Environment and failure handling
 
 - Run `npm install` in this skill directory once before first use.
 - Chrome or Chromium is required for DOM measurement.
 - Normalize every raster asset through `extract-regions.mjs`; do not pass arbitrary formats or data URLs to the converter. The pinned converter has an unpatched transitive `image-size` denial-of-service advisory for crafted ICNS, JXL, and HEIF input.
 - Export runs in a killable child process with a 120-second timeout. LibreOffice and `pdftoppm` are required only for comparison previews.
-- If export fails, report the failing command and root cause. Do not replace the deck with screenshots.
+  | Trigger                                      | First response                                                                                  | If it still fails                                                                     |
+  | -------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+  | Input is not a local PNG, JPEG, or WebP file | Stop and request a supported local raster file.                                                 | Reject the input; do not download a URL or widen the format allowlist.                |
+  | Visible text cannot be read                  | Stop and request the exact text from the user.                                                  | Preserve the region as an image only when the user explicitly approves that tradeoff. |
+  | HTML validation reports an error             | Correct the reported HTML or asset-path issue, then rerun validation.                           | Do not export until validation passes.                                                |
+  | Export fails or exceeds 120 seconds          | Report the command, stderr, and root cause; correct the reconstruction or runtime prerequisite. | Stop without a PPTX; do not replace the deck with screenshots.                        |
+  | Preview rendering is unavailable             | Deliver the passing PPTX validation report and state that visual comparison was not produced.   | Do not claim visual fidelity was verified.                                            |
 - If a source uses an unavailable proprietary font, use the closest installed font consistently and disclose the substitution.
