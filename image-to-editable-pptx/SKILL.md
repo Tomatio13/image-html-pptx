@@ -79,5 +79,11 @@ Set `SKILL_DIR` to the absolute path of the directory containing this `SKILL.md`
 - Chrome or Chromium is required for DOM measurement.
 - Normalize every raster asset through `extract-regions.mjs`; do not pass arbitrary formats or data URLs to the converter. The pinned converter has an unpatched transitive `image-size` denial-of-service advisory for crafted ICNS, JXL, and HEIF input.
 - Export runs in a killable child process with a 120-second timeout. LibreOffice and `pdftoppm` are required only for comparison previews.
-- If export fails, report the failing command and root cause. Do not replace the deck with screenshots.
+  | Trigger                                      | First response                                                                                  | If it still fails                                                                     |
+  | -------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+  | Input is not a local PNG, JPEG, or WebP file | Stop and request a supported local raster file.                                                 | Reject the input; do not download a URL or widen the format allowlist.                |
+  | Visible text cannot be read                  | Stop and request the exact text from the user.                                                  | Preserve the region as an image only when the user explicitly approves that tradeoff. |
+  | HTML validation reports an error             | Correct the reported HTML or asset-path issue, then rerun validation.                           | Do not export until validation passes.                                                |
+  | Export fails or exceeds 120 seconds          | Report the command, stderr, and root cause; correct the reconstruction or runtime prerequisite. | Stop without a PPTX; do not replace the deck with screenshots.                        |
+  | Preview rendering is unavailable             | Deliver the passing PPTX validation report and state that visual comparison was not produced.   | Do not claim visual fidelity was verified.                                            |
 - If a source uses an unavailable proprietary font, use the closest installed font consistently and disclose the substitution.
