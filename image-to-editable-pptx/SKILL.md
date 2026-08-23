@@ -32,6 +32,9 @@ Set `SKILL_DIR` to the absolute path of the directory containing this `SKILL.md`
    ```
 
 5. Use the first image's aspect ratio for the deck. Keep later images fully visible when their ratio differs; represent the necessary letterbox area in the reconstructed slide.
+
+   🔴 **CHECKPOINT — fidelity exception:** Before the first export, stop and ask for user approval if any visible text remains unreadable, a font substitution materially changes the layout, or a region must remain raster because it cannot be reconstructed faithfully. Resume only after the user approves the stated tradeoff.
+
 6. Validate before export:
 
    ```bash
